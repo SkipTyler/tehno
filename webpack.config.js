@@ -104,7 +104,7 @@ module.exports = (env = {}, argv) => {
 							loader: 'file-loader',
 							options: {
 								name: '[path][name].[ext]',
-								publicPath: '' // use relative urls
+								publicPath: '../' // use relative urls
 							}
 						},
 						{
