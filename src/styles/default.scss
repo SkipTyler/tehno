@@ -63,27 +63,7 @@ body {
 	position: relative;
 	transition: all .3s ease;
 
-	&:after {
-		content: '';
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-		width: calc(100% + 4px);
-		height: calc(100% + 4px);
-		opacity: 0;
-		border: inherit;
-		border-radius: inherit;
-		transition: all .3s ease;
-	}
-
 	&:hover {
-		box-shadow: 1px 1px 7px rgba(0, 0, 0, .55);
-
-		&:after {
-			opacity: 1;
-			width: 96%;
-			height: 135%;
-		}
+		box-shadow: 3px 3px 1px rgba(0, 0, 0, .65);
 	}
 }
