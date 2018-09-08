@@ -24,17 +24,20 @@
 		padding-top: 100px;
 		padding-bottom: 120px;
 		h1 {
-			color: $col-black;
-			font-size: 68px;
+			font-family: $ff-Poppins;
 			font-weight: 500;
+			color: $col-blackTitle;
+			font-size: 68px;
+			letter-spacing: 10px;
 			padding-bottom: 25px;
 			text-align: center;
 		}
 		h6 {
+			font-family: $ff-PlayfairDisplay;
 			text-align: center;
 			font-size: 20px;
 			line-height: 25px;
-			color: $col-black;
+			color: $col-blackSubtitle;
 			max-width: 75%;
 			margin: 0 auto;
 		}
