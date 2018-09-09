@@ -2,6 +2,7 @@ body {
 	background-color: rgba(239, 240, 242, 0.5);
 }
 
+
 .wrapper {
 	width: 100%;
 	max-width: 1160px;
@@ -18,11 +19,23 @@ body {
 	line-height: 41px;
 	color: $col-blackTitle;
 	letter-spacing: 2px;
+	position: relative;
+	padding: 0 10px 30px;
 	@media screen and (max-width: 420px) {
 		font-size: 26px;
 		line-height: 31px;
 	}
 
+	&:before {
+		position: absolute;
+		content: '';
+		width: 50px;
+		height: 3px;
+		background: rgba(84, 133, 21, .3);
+		bottom: 15px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
 }
 
 .subtitle {
@@ -32,10 +45,19 @@ body {
 	line-height: 29px;
 	color: $col-blackSubtitle;
 	letter-spacing: 1px;
+	margin-bottom: 50px;
+	@media screen and (max-width: 680px) {
+		margin-bottom: 0;
+	}
 	@media screen and (max-width: 420px) {
 		font-size: 20px;
 		line-height: 25px;
 	}
+}
+
+.title,
+.subtitle {
+	text-align: center;
 }
 
 .text {
@@ -65,5 +87,47 @@ body {
 
 	&:hover {
 		box-shadow: 3px 3px 1px rgba(0, 0, 0, .65);
+	}
+}
+
+.svg-item {
+	width: 100px;
+	height: 100px;
+	fill: #333333b8;
+	margin-bottom: 30px;
+}
+
+.slider_nav {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 50px;
+	@media screen and (max-width: 680px) {
+		padding: 0;
+	}
+
+	&_button {
+		padding: 10px 50px;
+		background-color: #80b7b3;
+		border-radius: 22px;
+		box-shadow: 0 6px 40px rgba(128, 183, 179, 0.54);
+		color: #ffffff;
+		font: 500 14px $ff-Poppins;
+		line-height: 19px;
+		z-index: 1;
+		transition: all .3s ease;
+		letter-spacing: 1px;
+		margin-bottom: 30px;
+		@media screen and (max-width: 680px) {
+			padding: 10px 30px;
+		}
+
+		&:hover {
+			box-shadow: 0 6px 40px rgba(60, 97, 17, 0.3);
+			background-color: #6b9995;
+		}
+	}
+
+	&_left {
+		visibility: hidden;
 	}
 }

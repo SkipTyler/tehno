@@ -1,0 +1,85 @@
+.opacity {
+  animation: opacity .6s linear;
+}
+@keyframes opacity {
+  from {opacity: 1}
+  50% {opacity: 0}
+  to {opacity: 1}
+}
+
+.clients {
+
+  h3 {
+    @media screen and (max-width: 768px) {
+      margin-bottom: 30px;
+    }
+  }
+  &_content {
+    display: flex;
+    justify-content: space-around;
+    @media screen and (max-width: 580px) {
+      flex-direction: column;
+    }
+
+    &_item {
+      display: flex;
+      width: 33.3%;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 50px;
+      @media screen and (max-width: 580px) {
+        width: 100%;
+      }
+
+      p {
+        text-align: center;
+        @media screen and (max-width: 768px) {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  &_dots {
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    position: relative;
+    @media screen and (max-width: 1024px) {
+      width: 40%;
+    }
+    @media screen and (max-width: 580px) {
+      width: 50%;
+    }
+    @media screen and (max-width: 420px) {
+      width: 70%;
+    }
+
+    a {
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      border: solid 1px #333333;
+    }
+
+    &_left {
+      position: absolute;
+      left: -50px;
+      top: 50%;
+    }
+    &_left:before,
+    &_left:after,
+    &_right:after,
+    &_right:before {
+      position: absolute;
+      content: '';
+    }
+  }
+
+  .svg-item {
+    width: 150px;
+    height: 150px;
+  }
+}
