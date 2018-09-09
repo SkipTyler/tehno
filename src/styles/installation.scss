@@ -1,0 +1,108 @@
+.hiding {
+  animation: hiding .7s linear;
+}
+@keyframes hiding {
+  from {opacity: 1}
+  30% {opacity: 0}
+  to {opacity: 1}
+}
+
+.installation {
+  position: relative;
+  padding-top: 50px;
+  margin-bottom: 150px;
+  &_overlay {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../images/slider/energy.jpg");
+    height: 100%;
+    width: 100%;
+    opacity: .2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    @media screen and (max-width: 680px) {
+      background-size: cover;
+    }
+  }
+
+  .installation_slider {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    @media screen and (max-width: 680px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &_column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 25%;
+      color: #333333b8;
+      @media screen and (max-width: 680px) {
+        width: auto;
+      }
+
+      .text {
+        padding-bottom: 30px;
+        position: relative;
+        text-align: center;
+        @media screen and (max-width: 768px) and (min-width: 680px){
+          font-size: 15px;
+          line-height: 20px;
+        }
+
+        &:before {
+          position: absolute;
+          content: '';
+          width: 250px;
+          height: 3px;
+          background: rgba(84, 133, 21, .3);
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: 20px;
+          @media screen and (max-width: 850px) {
+            width: 200px;
+          }
+        }
+      }
+    }
+
+    //&_nav {
+    //  display: flex;
+    //  justify-content: space-between;
+    //  padding: 0 50px;
+    //  @media screen and (max-width: 680px) {
+    //    padding: 0;
+    //  }
+    //
+    //  &_button {
+    //    padding: 10px 50px;
+    //    background-color: #80b7b3;
+    //    border-radius: 22px;
+    //    box-shadow: 0 6px 40px rgba(128, 183, 179, 0.54);
+    //    color: #ffffff;
+    //    font: 500 14px $ff-Poppins;
+    //    line-height: 19px;
+    //    z-index: 1;
+    //    transition: all .3s ease;
+    //    letter-spacing: 1px;
+    //    margin-bottom: 30px;
+    //    @media screen and (max-width: 680px) {
+    //      padding: 10px 30px;
+    //    }
+    //
+    //    &:hover {
+    //      box-shadow: 0 6px 40px rgba(60, 97, 17, 0.3);
+    //      background-color: #6b9995;
+    //    }
+    //  }
+    //
+    //  &_left {
+    //    visibility: hidden;
+    //  }
+    //}
+  }
+}

@@ -1,34 +1,6 @@
 .benefits {
   padding: 100px 0;
 
-  h2 {
-    position: relative;
-    padding: 0 10px 30px;
-  }
-
-  h2:before {
-    position: absolute;
-    content: '';
-    width: 50px;
-    height: 3px;
-    background: rgba(84, 133, 21, .3);
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  h3 {
-    margin-bottom: 50px;
-    @media screen and (max-width: 680px) {
-      margin-bottom: 0;
-    }
-  }
-
-  h2,
-  h3 {
-    text-align: center;
-  }
-
   .benefits_content {
     display: flex;
     justify-content: space-around;
@@ -66,7 +38,7 @@
       .text:before {
         position: absolute;
         content: '';
-        width: 90%;
+        width: 100%;
         height: 3px;
         background: rgba(84, 133, 21, .3);
         bottom: 20px;
