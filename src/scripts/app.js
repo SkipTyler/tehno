@@ -42,23 +42,24 @@ let clientsSliderCounter = 0;
 
 document.addEventListener('click', (e) => {
 	const clickedElement = e.target;
+    const dots = document.querySelectorAll('.clients_dots a');
+    const buttonHiding = (buttons, counter, slider) => {
+
+        for (let button of buttons) {
+            button.style.visibility = 'visible';
+        }
+
+        if (counter === 0) {
+            buttons[0].style.visibility = 'hidden';
+        }
+        else if (counter === slider.length / 3 - 1 || counter === slider.length - 1 ) {
+            buttons[1].style.visibility = 'hidden';
+        }
+    };
 
 	// slider of installation
 	if (clickedElement.classList.contains('slider_nav_button')) {
         e.preventDefault();
-        const buttonHiding = (buttons, counter, slider) => {
-
-            for (let button of buttons) {
-                button.style.visibility = 'visible';
-            }
-
-            if (counter === 0) {
-                buttons[0].style.visibility = 'hidden';
-            }
-            else if (counter === slider.length / 3 - 1) {
-                buttons[1].style.visibility = 'hidden';
-            }
-        };
 
 		if (clickedElement.parentNode.classList.contains('installation_nav')) {
             const overlay = document.querySelector('.installation_overlay');
@@ -101,7 +102,8 @@ document.addEventListener('click', (e) => {
                 setTimeout(() => {
 
                     for (let i = 0; i < items.length; i++) {
-                        items[i].querySelector('p').textContent = clientsSlides[(clientsSliderCounter) * 3 + i].name
+                        items[i].querySelector('p').textContent = clientsSlides[(clientsSliderCounter) * 3 + i].name;
+                        items[i].querySelector('svg').innerHTML = clientsSlides[(clientsSliderCounter) * 3 + i].icon;
                     }
                     content.classList.remove('opacity');
                 }, 500);
@@ -120,8 +122,63 @@ document.addEventListener('click', (e) => {
                 buttonHiding(buttons, clientsSliderCounter, clientsSlides);
                 animate();
             }
-		}
+
+            // dots
+            for (let dot of dots) {
+
+                if (dot.classList.contains('active')) {
+                    dot.classList.remove('active');
+                }
+            }
+            dots[clientsSliderCounter].classList.add('active');
+        }
 	}
+
+	// dots clicking
+	else if (clickedElement.parentNode.classList.contains('clients_dots')) {
+        e.preventDefault();
+
+	    if (!clickedElement.classList.contains('active')) {
+
+            for (let i = 0; i < dots.length; i++) {
+
+                if (dots[i].classList.contains('active')) {
+                    dots[i].classList.remove('active');
+                }
+                else if (dots[i] === clickedElement) {
+                    clientsSliderCounter = i;
+                }
+            }
+            dots[clientsSliderCounter].classList.add('active');
+            const content = document.querySelector('.clients_content');
+            const items = content.querySelectorAll('.clients_content_item');
+            const buttons = document.querySelectorAll('.clients_nav .slider_nav_button');
+            const animate = () => {
+                content.classList.add('opacity');
+                setTimeout(() => {
+
+                    for (let i = 0; i < items.length; i++) {
+                        items[i].querySelector('p').textContent = clientsSlides[(clientsSliderCounter) * 3 + i].name;
+                        items[i].querySelector('svg').innerHTML = clientsSlides[(clientsSliderCounter) * 3 + i].icon;
+                    }
+                    content.classList.remove('opacity');
+                }, 500);
+            };
+
+            animate();
+
+            for (let button of buttons) {
+                button.style.visibility = 'visible';
+            }
+
+            if (clientsSliderCounter === 0) {
+                buttons[0].style.visibility = 'hidden';
+            }
+            else if (clientsSliderCounter === dots.length - 1) {
+                buttons[1].style.visibility = 'hidden';
+            }
+        }
+    }
 });
 
 

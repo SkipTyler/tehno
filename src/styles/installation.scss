@@ -26,10 +26,24 @@
     }
   }
 
+  h2 {
+    @media screen and (max-width: 680px) {
+      font-size: 30px;
+      line-height: 35px;
+    }
+  }
+
+  h3 {
+    @media screen and (max-width: 680px) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+  }
   .installation_slider {
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
+    min-height: 404px;
     @media screen and (max-width: 680px) {
       flex-direction: column;
       align-items: center;
@@ -43,6 +57,7 @@
       color: #333333b8;
       @media screen and (max-width: 680px) {
         width: auto;
+        margin-top: 40px;
       }
 
       .text {
@@ -69,40 +84,5 @@
         }
       }
     }
-
-    //&_nav {
-    //  display: flex;
-    //  justify-content: space-between;
-    //  padding: 0 50px;
-    //  @media screen and (max-width: 680px) {
-    //    padding: 0;
-    //  }
-    //
-    //  &_button {
-    //    padding: 10px 50px;
-    //    background-color: #80b7b3;
-    //    border-radius: 22px;
-    //    box-shadow: 0 6px 40px rgba(128, 183, 179, 0.54);
-    //    color: #ffffff;
-    //    font: 500 14px $ff-Poppins;
-    //    line-height: 19px;
-    //    z-index: 1;
-    //    transition: all .3s ease;
-    //    letter-spacing: 1px;
-    //    margin-bottom: 30px;
-    //    @media screen and (max-width: 680px) {
-    //      padding: 10px 30px;
-    //    }
-    //
-    //    &:hover {
-    //      box-shadow: 0 6px 40px rgba(60, 97, 17, 0.3);
-    //      background-color: #6b9995;
-    //    }
-    //  }
-    //
-    //  &_left {
-    //    visibility: hidden;
-    //  }
-    //}
   }
 }
