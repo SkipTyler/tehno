@@ -123,3 +123,45 @@ document.addEventListener('click', (e) => {
 		}
 	}
 });
+
+
+// services card
+
+(() => {
+	const cards = document.querySelectorAll('.js-card');
+
+	Array.prototype.forEach.call(cards, el => {
+		el.addEventListener('click', () => {
+			el.classList.toggle('active');
+		})
+	})
+
+
+})();
+
+const crossDomainPost = () => {
+	// Add the iframe with a unique name
+	const iframe = document.createElement("iframe");
+	const uniqueString = "CHANGE_THIS_TO_SOME_UNIQUE_STRING";
+	document.body.appendChild(iframe);
+	iframe.style.display = "none";
+	iframe.contentWindow.name = uniqueString;
+
+	// construct a form with hidden inputs, targeting the iframe
+	const form = document.createElement("form");
+	form.target = uniqueString;
+	form.action =
+		"https://api.telegram.org/bot383655115:AAFbKchTA9zDxOSfRW-8IVH2A6r3VTAjUV4/sendMessage?chat_id=302632059&text=" + document.querySelector('#customerName').value + " " + document.querySelector('#phoneNumber').value;
+
+	form.method = "POST";
+
+	// repeat for each parameter
+	const input = document.createElement("input");
+	input.type = "hidden";
+	input.name = "INSERT_YOUR_PARAMETER_NAME_HERE";
+	input.value = "INSERT_YOUR_PARAMETER_VALUE_HERE";
+	form.appendChild(input);
+
+	document.body.appendChild(form);
+	form.submit();
+};
