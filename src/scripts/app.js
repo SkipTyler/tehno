@@ -1,9 +1,27 @@
 'use strict';
-
 import installSlides from './installSlides';
 import clientsSlides from './clientsSlides';
 
 // mobile menu
+
+
+const _body = document.querySelector('body');
+
+// hide scroll
+const hideScroll = () => {
+	const _scrollWidth = document.documentElement.scrollWidth;
+	const _screenWidth = screen.width;
+	const _rightPadding = _screenWidth - _scrollWidth;
+	_body.style.paddingRight = `${_rightPadding}` + 'px';
+	document.documentElement.classList.add('no-scroll');
+};
+
+// show scroll in
+const showScroll = () => {
+	_body.removeAttribute('style');
+	document.documentElement.classList.remove('no-scroll');
+};
+
 
 (() => {
 
@@ -17,13 +35,26 @@ import clientsSlides from './clientsSlides';
 			target.classList.remove('active');
 			menu.classList.remove('active');
 			target.classList.add('close');
+			showScroll();
 			setTimeout(() => {
 				target.classList.remove('close');
 			}, 500)
 		} else {
 			target.classList.add('active');
 			menu.classList.add('active');
+			hideScroll();
 		}
+	});
+
+	const menuLinks = document.querySelectorAll('.header__nav-link');
+
+	Array.prototype.forEach.call(menuLinks, el => {
+		el.addEventListener('click', () => {
+			menuBtn.classList.remove('active');
+			menu.classList.remove('active');
+			menuBtn.classList.add('close');
+			showScroll();
+		})
 	})
 
 
@@ -208,7 +239,7 @@ const crossDomainPost = () => {
 	const form = document.createElement("form");
 	form.target = uniqueString;
 	form.action =
-		"https://api.telegram.org/bot383655115:AAFbKchTA9zDxOSfRW-8IVH2A6r3VTAjUV4/sendMessage?chat_id=302632059&text=" + document.querySelector('#customerName').value + " " + document.querySelector('#phoneNumber').value;
+		"https://api.telegram.org/bot383655115:AAFbKchTA9zDxOSfRW-8IVH2A6r3VTAjUV4/sendMessage?chat_id=380460973&text=" + document.querySelector('#company').value + "%0A" + document.querySelector('#name').value + "%0A" + document.querySelector('#email').value + "%0A" + document.querySelector('#tel').value;
 
 	form.method = "POST";
 
@@ -222,3 +253,44 @@ const crossDomainPost = () => {
 	document.body.appendChild(form);
 	form.submit();
 };
+
+$(".js-scrollto").on("click", function(e) {
+	e.preventDefault();
+	var t = $(this).attr("href"),
+		a = $(t).offset().top;
+	$("body,html").animate({
+		scrollTop: a
+	}, 900)
+});
+
+$("input[type=tel]").inputmask({"mask": "(999) 999-9999"});
+
+
+
+$('.js-telegramForm').click(function (e) {
+	e.preventDefault();
+	var parent = $(this).parent();
+	var formTel = parent.find('input[type=tel]');
+	var formEmail = parent.find('input[type=email]');
+	var reTel = /^[\d\(\)\ \-]{4,14}\d$/;
+	var validTel =  reTel.test(formTel.val());
+	var reEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+	var validEmail = reEmail.test(formEmail.val());
+
+	var formCompany = parent.find('input[name=company]');
+	var formName = parent.find('input[name=name]');
+	var reFormCompany = formCompany.val().length;
+	var reFormName = formName.val().length;
+
+	var error = parent.find('.error');
+
+	if (validTel && validEmail && reFormCompany > 2 && reFormName > 2) {
+		crossDomainPost();
+		parent.trigger("reset");
+	} else {
+		error.addClass('active');
+		setTimeout(function () {
+			error.removeClass('active')
+		}, 5000)
+	}
+});

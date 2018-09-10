@@ -36,6 +36,17 @@
 		margin-bottom: 20px;
 		position: relative;
 		z-index: 11;
+		height: 130px;
+		@media screen and (max-width: 768px) {
+			height: 100px;
+		}
+
+		img {
+			display: block;
+			height: 100%;
+			margin: 0 auto;
+			filter: drop-shadow(4px 3px 0px rgba(0, 0, 0, .6));
+		}
 	}
 
 	&__nav{

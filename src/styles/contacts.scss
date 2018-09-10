@@ -1,0 +1,110 @@
+.contacts {
+	display: flex;
+	justify-content: space-around;
+	@media screen and (max-width: 680px) {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&--wrap {
+		padding-top: 50px;
+		padding-bottom: 70px;
+	}
+
+	&__text {
+		width: 48%;
+		display: flex;
+		flex-direction: column;
+		background-color: rgba(39, 61, 70, 0.90);
+		padding: 20px;
+		padding-bottom: 10px;
+		@media screen  and (max-width: 680px) {
+			width: 100%;
+			margin-bottom: 25px;
+		}
+
+		.subtitle {
+			margin-bottom: 20px;
+			text-align: left;
+			color: rgba(255, 255, 255, 0.8);
+		}
+		p.text {
+			padding-bottom: 10px;
+			max-width: 80%;
+			color: rgba(255, 255, 255, 0.8);
+			padding-left: 40px;
+		}
+		a {
+			padding-bottom: 10px;
+			color: rgba(255, 255, 255, 0.8);
+			padding-left: 40px;
+		}
+		p,
+		a {
+			position: relative;
+
+			span {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 30px;
+				svg {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	&__form {
+		width: 48%;
+		display: flex;
+		flex-direction: column;
+		background-color: rgba(39, 61, 70, 0.90);
+		padding: 20px 20px 60px;
+		position: relative;
+		@media screen  and (max-width: 680px) {
+			width: 100%;
+		}
+
+		.subtitle {
+			margin-bottom: 20px;
+			text-align: left;
+			color: rgba(255, 255, 255, 0.8);
+		}
+
+		input {
+			border-radius: 22px;
+			border: 1px solid rgba(255, 247, 244, 0.2);
+			background-color: rgba(0, 0, 0, 0.2);
+			padding-left: 37px;
+			line-height: 45px;
+			font-family: $ff-Poppins;
+			color: rgba(255, 255, 255, 0.6);
+			font-size: 14px;
+			font-weight: 500;
+			margin-bottom: 10px;
+		}
+
+		button {
+			border: none;
+			width: fit-content;
+			margin: 10px auto 0;
+			cursor: pointer;
+		}
+
+		.error {
+			position: absolute;
+			bottom: 5px;
+			opacity: 0;
+			color: red;
+			font-size: 14px;
+			text-align: center;
+			left: 0;
+			width: 100%;
+			&.active {
+				opacity: 1;
+			}
+		}
+
+	}
+}
