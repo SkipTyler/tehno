@@ -130,6 +130,7 @@ document.addEventListener('click', (e) => {
 			const buttons = document.querySelectorAll('.clients_nav .slider_nav_button');
 			const animate = () => {
                 content.classList.add('opacity');
+
                 setTimeout(() => {
 
                     for (let i = 0; i < items.length; i++) {
@@ -193,7 +194,7 @@ document.addEventListener('click', (e) => {
                         items[i].querySelector('svg').innerHTML = clientsSlides[(clientsSliderCounter) * 3 + i].icon;
                     }
                     content.classList.remove('opacity');
-                }, 500);
+                }, 250);
             };
 
             animate();
