@@ -26,9 +26,7 @@
   &_content {
     display: flex;
     justify-content: space-around;
-    @media screen and (max-width: 1024px) and (min-width: 768px){
-      min-height: 276px;
-    }
+    min-height: 276px;
     @media screen and (max-width: 768px) and (min-width: 580px){
       min-height: 299px;
     }
