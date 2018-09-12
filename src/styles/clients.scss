@@ -1,6 +1,6 @@
 .opacity {
-  animation: opacity .5s linear;
-  -webkit-animation: opacity .5s linear;
+  animation: opacity .7s linear;
+  -webkit-animation: opacity .7s linear;
 }
 @keyframes opacity {
   from {
@@ -103,6 +103,10 @@
   .slider_nav_button {
     @media screen and (max-width: 580px) {
       padding: 8px 14px;
+    }
+
+    &:first-child {
+      visibility: visible;
     }
   }
 

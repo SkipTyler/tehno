@@ -1,6 +1,7 @@
 'use strict';
 import installSlides from './installSlides';
 import clientsSlides from './clientsSlides';
+import Slider from './slider';
 
 // mobile menu
 
@@ -56,37 +57,35 @@ const showScroll = () => {
 			showScroll();
 		})
 	})
-
-
 })();
+const buttonHiding = (buttons, counter, slider) => {
+
+    for (let button of buttons) {
+        button.style.visibility = 'visible';
+    }
+
+    if (counter === 0) {
+        buttons[0].style.visibility = 'hidden';
+    }
+    else if (counter === slider.length / 3 - 1 || counter === slider.length - 1 ) {
+        buttons[1].style.visibility = 'hidden';
+    }
+};
+
+const clientSlider = new Slider({
+    slider: document.querySelector('.clients_content'),
+    data: clientsSlides
+});
 
 document.addEventListener('DOMContentLoaded', () => {
-	const sets = document.querySelectorAll('.clients_content_set');
-
-	for (let set of sets) {
-		set.style.width = getComputedStyle(document.querySelector('.wrapper')).width;
-	}
+	clientSlider.initialize();
 });
 
 let installSliderCounter = 0;
-let clientsSliderCounter = 0;
 
 document.addEventListener('click', (e) => {
 	const clickedElement = e.target;
     const dots = document.querySelectorAll('.clients_dots a');
-    const buttonHiding = (buttons, counter, slider) => {
-
-        for (let button of buttons) {
-            button.style.visibility = 'visible';
-        }
-
-        if (counter === 0) {
-            buttons[0].style.visibility = 'hidden';
-        }
-        else if (counter === slider.length / 3 - 1 || counter === slider.length - 1 ) {
-            buttons[1].style.visibility = 'hidden';
-        }
-    };
 
 	// slider of installation
 	if (clickedElement.classList.contains('slider_nav_button')) {
@@ -125,44 +124,19 @@ document.addEventListener('click', (e) => {
 
         // slider of clients
 		else if (clickedElement.parentNode.classList.contains('clients_nav')) {
-			const content = document.querySelector('.clients_content');
-			const items = content.querySelectorAll('.clients_content_item');
-			const buttons = document.querySelectorAll('.clients_nav .slider_nav_button');
-			const animate = () => {
-                content.classList.add('opacity');
 
-                setTimeout(() => {
-
-                    for (let i = 0; i < items.length; i++) {
-                        items[i].querySelector('p').textContent = clientsSlides[(clientsSliderCounter) * 3 + i].name;
-                        items[i].querySelector('svg').innerHTML = clientsSlides[(clientsSliderCounter) * 3 + i].icon;
-                    }
-                    content.classList.remove('opacity');
-                }, 500);
-			};
-
-            // animation
-            if (clickedElement.classList.contains('slider_nav_left')
-                && clientsSliderCounter !== 0) {
-                clientsSliderCounter--;
-                buttonHiding(buttons, clientsSliderCounter, clientsSlides);
-                animate();
+            if (clickedElement.classList.contains('slider_nav_left')) {
+                clientSlider.action({
+					side: 'left'
+				});
+                clientSlider.refresh();
             }
-            else if (clickedElement.classList.contains('slider_nav_right')
-                && clientsSliderCounter !== clientsSlides.length / 3 - 1) {
-                clientsSliderCounter++;
-                buttonHiding(buttons, clientsSliderCounter, clientsSlides);
-                animate();
+            else if (clickedElement.classList.contains('slider_nav_right')) {
+               clientSlider.action({
+				   side: 'right'
+			   });
+                clientSlider.refresh();
             }
-
-            // dots
-            for (let dot of dots) {
-
-                if (dot.classList.contains('active')) {
-                    dot.classList.remove('active');
-                }
-            }
-            dots[clientsSliderCounter].classList.add('active');
         }
 	}
 
@@ -178,41 +152,18 @@ document.addEventListener('click', (e) => {
                     dots[i].classList.remove('active');
                 }
                 else if (dots[i] === clickedElement) {
-                    clientsSliderCounter = i;
+                    clientSlider.action({
+                        number: i
+                    });
+                    clientSlider.refresh();
+                    setTimeout(() => {
+                        dots[i].classList.add('active');
+					}, 500)
                 }
-            }
-            dots[clientsSliderCounter].classList.add('active');
-            const content = document.querySelector('.clients_content');
-            const items = content.querySelectorAll('.clients_content_item');
-            const buttons = document.querySelectorAll('.clients_nav .slider_nav_button');
-            const animate = () => {
-                content.classList.add('opacity');
-                setTimeout(() => {
-
-                    for (let i = 0; i < items.length; i++) {
-                        items[i].querySelector('p').textContent = clientsSlides[(clientsSliderCounter) * 3 + i].name;
-                        items[i].querySelector('svg').innerHTML = clientsSlides[(clientsSliderCounter) * 3 + i].icon;
-                    }
-                    content.classList.remove('opacity');
-                }, 250);
-            };
-
-            animate();
-
-            for (let button of buttons) {
-                button.style.visibility = 'visible';
-            }
-
-            if (clientsSliderCounter === 0) {
-                buttons[0].style.visibility = 'hidden';
-            }
-            else if (clientsSliderCounter === dots.length - 1) {
-                buttons[1].style.visibility = 'hidden';
             }
         }
     }
 });
-
 
 // services card
 
@@ -224,8 +175,6 @@ document.addEventListener('click', (e) => {
 			el.classList.toggle('active');
 		})
 	})
-
-
 })();
 
 const crossDomainPost = () => {
