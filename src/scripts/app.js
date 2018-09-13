@@ -2,6 +2,7 @@
 import installSlides from './installSlides';
 import clientsSlides from './clientsSlides';
 import Slider from './slider';
+import navSlider from './navSlider';
 
 // mobile menu
 
@@ -79,6 +80,7 @@ const clientSlider = new Slider({
 
 document.addEventListener('DOMContentLoaded', () => {
 	clientSlider.initialize();
+	navSlider.initialize();
 });
 
 let installSliderCounter = 0;
@@ -166,17 +168,8 @@ document.addEventListener('click', (e) => {
 
     // slider of navigation
 	else if (clickedElement.parentNode.classList.contains('nav-slider_nav')) {
-		const slides = document.querySelectorAll('.nav-slider_overlay_slide');
-
-		for (let slide of slides) {
-
-			if (slide.classList.contains('active')) {
-				slide.classList.remove('active');
-			}
-			else {
-				slide.classList.add('active')
-			}
-		}
+		navSlider.refresh();
+		navSlider.action();
 	}
 });
 
