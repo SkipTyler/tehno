@@ -111,7 +111,7 @@
         width: calc(100% - 228px);
         z-index: -1;
         transition: all .5s linear;
-        transform: scale(0);
+        transform: scale(.8);
         transform-origin: top right;
         @media screen and (max-width: 768px) {
           width: calc(100% - 128px);
