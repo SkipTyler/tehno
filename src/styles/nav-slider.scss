@@ -1,5 +1,4 @@
 .nav-slider {
-  margin-bottom: 150px;
   padding: 50px 0;
 
   &_overlay {
@@ -112,8 +111,8 @@
         width: calc(100% - 228px);
         z-index: -1;
         transition: all .5s linear;
-        transform: scale(0);
-        transform-origin: top right;
+        transform: scale(.8);
+        transform-origin: right;
         @media screen and (max-width: 768px) {
           width: calc(100% - 128px);
         }
