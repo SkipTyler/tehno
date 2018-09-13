@@ -80,21 +80,45 @@
 			position: relative;
 			perspective: 1700px;
 			height: 270px;
-			margin-bottom: 12px;
+			margin-bottom: 16px;
 			cursor: pointer;
+			&:hover {
+				animation: scale 1s ease-in-out;
+			}
 			@media screen and (max-width: 480px) {
 				height: 170px;
 			}
 
+			.card-invert {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				@media screen and (max-width: 768px) {
+					width: 45px;
+					height: 45px;
+					top: 10px;
+					right: 10px;
+					border-radius: 100px;
+					border: 1px solid white;
+					&:after {
+						content: 'i';
+
+					}
+				}
+			}
+
 			&.small {
-				width: calc(46% - 6px);
+				width: calc(46% - 8px);
 				@media screen and (max-width: 680px) {
 					width: 100%;
 				}
 			}
 
 			&.large {
-				width: calc(54% - 6px);
+				width: calc(54% - 8px);
 				@media screen and (max-width: 680px) {
 					width: 100%;
 				}
@@ -140,5 +164,18 @@
 			}
 		}
 
+	}
+}
+
+
+@keyframes scale {
+	from {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(.6);
+	}
+	to {
+		transform: scale(1);
 	}
 }

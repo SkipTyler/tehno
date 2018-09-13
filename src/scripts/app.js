@@ -220,9 +220,21 @@ document.addEventListener('click', (e) => {
 	const cards = document.querySelectorAll('.js-card');
 
 	Array.prototype.forEach.call(cards, el => {
-		el.addEventListener('click', () => {
-			el.classList.toggle('active');
-		})
+		const parent = el.parentNode;
+
+		if (window.innerWidth > 769) {
+			el.addEventListener('mouseover', () => {
+				parent.classList.add('active');
+			});
+			el.addEventListener('mouseout', () => {
+				parent.classList.remove('active');
+			})
+		} else {
+			el.addEventListener('click', () => {
+				parent.classList.toggle('active');
+			});
+		}
+
 	})
 
 
