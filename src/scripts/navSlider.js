@@ -6,7 +6,7 @@ const Slider = {
     timer: () => {
         Slider.timerID = setInterval(
             () => Slider.action()
-            , 3000
+            , 5000
         )
     },
 
