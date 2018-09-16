@@ -264,3 +264,97 @@ $('.js-telegramForm').click(function (e) {
 		}, 5000)
 	}
 });
+
+//carousel
+(() => {
+
+	const  carousels = document.querySelectorAll('.js-carousel');
+
+	Array.prototype.forEach.call(carousels, elem => {
+
+		const carouselItem = elem.querySelectorAll('.carousel__item');
+		const lastItem = elem.lastElementChild;
+		lastItem.classList.add('ref');
+
+		const parent = elem.parentNode;
+		const carouselNav = parent.querySelectorAll('.js-carouselNav');
+
+		Array.prototype.forEach.call(carouselNav, nav => {
+			nav.addEventListener('click', ev => {
+				ev.preventDefault();
+				let newSeat;
+				const ref = elem.querySelector('.ref');
+
+				const next = el => {
+					if (el.nextElementSibling) {
+						return el.nextElementSibling
+					} else {
+						return elem.firstElementChild
+					}
+				};
+
+				const prev = el => {
+					if (el.previousElementSibling) {
+						return el.previousElementSibling;
+					} else {
+						return elem.lastElementChild;
+					}
+				};
+
+				ref.classList.remove('ref');
+				if (nav.getAttribute('data-nav') === 'next') {
+					newSeat = next(ref);
+					elem.classList.remove('revers');
+				} else {
+					newSeat = prev(ref);
+					elem.classList.add('revers');
+				}
+
+				newSeat.classList.add('ref');
+				newSeat.style.order = 1;
+				for (let i = 1; i < carouselItem.length; i++) {
+					newSeat = next(newSeat);
+					newSeat.style.order = i;
+				}
+
+				elem.classList.remove('set');
+				return setTimeout(() => {
+					return elem.classList.add('set')
+				}, 50)
+
+			})
+
+		})
+
+	});
+
+})();
+
+// gallery tab
+(() => {
+
+	const galleryNav = document.querySelectorAll('.js-galleryNav');
+	const galleryItem = document.querySelectorAll('.gallery__item');
+
+	Array.prototype.forEach.call(galleryNav, elem => {
+
+		elem.addEventListener('click', ev => {
+			const target = ev.target || ev.currentTarget;
+			const dataId = target.getAttribute('data-gallery');
+
+			galleryNav.forEach(el => {
+				el.classList.remove('active');
+			});
+			galleryItem.forEach(el => {
+				el.classList.remove('active');
+			});
+			target.classList.add('active');
+
+			const activeTab = document.querySelector(`.js-gallery_${dataId}`);
+			activeTab.classList.add('active');
+
+		})
+
+	})
+
+})();
