@@ -3,6 +3,7 @@
 
   &_overlay {
     position: relative;
+    padding-top: 30px;
 
     &_slide {
       position: absolute;
@@ -126,7 +127,7 @@
 
       &:nth-child(2) {
         .nav-slider_overlay_slide_img {
-          background-image: url("../images/photo_2018-09-17_00-58-34.jpg");
+          background-image: url("../images/photo_2018-09-17_02-31-10.jpg");
         }
       }
     }
